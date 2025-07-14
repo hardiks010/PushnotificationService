@@ -4,7 +4,7 @@ buildscript {
         minSdkVersion = 24
         compileSdkVersion = 35
         targetSdkVersion = 35
-        ndkVersion = "27.1.12297006"
+        ndkVersion = "29.0.13599879"
         kotlinVersion = "2.1.20"
     }
     repositories {
@@ -15,7 +15,16 @@ buildscript {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.google.gms:google-services:4.4.0") //adding for global firebase access
     }
 }
+
+allprojects {
+    repositories {
+        google()// this as well
+        mavenCentral()
+    }
+}
+
 
 apply plugin: "com.facebook.react.rootproject"

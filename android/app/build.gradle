@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: 'com.google.gms.google-services' // Apply this plugin early to ensure it's processed correctly
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -77,7 +78,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
+    // Define the namespace for your application, matching your package name
     namespace "com.spacechat"
+
     defaultConfig {
         applicationId "com.spacechat"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -116,4 +119,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    // Firebase BOM (Bill of Materials) for consistent Firebase dependency versions
+    // Use the latest version available (e.g., 33.16.0 or newer if available)
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    // Firebase Messaging library (version managed by the BOM)
+    implementation 'com.google.firebase:firebase-messaging'
 }
